@@ -1,0 +1,49 @@
+{
+  "name": "trafficker",
+  "version": "0.0.1",
+  "description": "",
+  "main": "build/index.js",
+  "scripts": {},
+  "author": "Alain Deschenes <ArianeSoft Inc.>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kornalius/trafficker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kornalius/trafficker/issues"
+  },
+  "homepage": "https://github.com/kornalius/trafficker#readme",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-plugin-transform-react-jsx": "^6.8.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.1",
+    "electron-connect": "^0.4.2",
+    "electron-prebuilt": "^1.2.3",
+    "eslint": "^2.13.0",
+    "eslint-config-standard": "^5.3.1",
+    "eslint-plugin-promise": "^1.3.2",
+    "eslint-plugin-standard": "^1.3.2",
+    "event-stream": "^3.3.2",
+    "glob": "^7.0.4",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "eventemitter2": "^1.0.5",
+    "fs-plus": "^2.9.1",
+    "json-query": "^2.1.0",
+    "jss": "^5.1.0",
+    "lodash": "^4.13.1",
+    "observe-js": "^0.5.7",
+    "preact": "^4.8.0",
+    "raf": "^3.2.0",
+    "underscore-plus": "^1.6.6"
+  }
+}

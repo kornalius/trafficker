@@ -1,0 +1,340 @@
+---
+title: The Trafficker
+tags: []
+notebook: Ideas
+---
+
+Space exploration game
+
+Legend
+
+  * $ = Mixin
+
+Randomizer
+
+  * randomize(min, max)
+  * randomLine(values)
+
+$Value
+
+  * value
+
+$Qty
+
+  * qty
+
+$Source
+
+  * source
+
+  * hasSource()
+
+$Target
+
+  * target
+
+  * hasTarget()
+
+$Name
+
+  * name
+
+  * hasName()
+
+$Desc
+
+  * desc
+
+  * hasDesc()
+
+$Icon
+
+  * icon
+
+  * hasIcon()
+
+$Parent
+
+  * parent
+
+  * hasParent()
+
+$Day
+
+  * day
+
+  * daysBefore(day)
+  * daysAfter(day)
+  * isPast(day)
+  * isFuture(day)
+
+$Hp
+
+  * hp
+
+  * isUnconscious()
+  * isDead()
+  * dmg(target, value)
+
+$Attack
+
+  * atk
+
+  * hit(target, value)
+
+$Defense
+
+  * def
+
+$Speed
+
+  * spd
+
+$Strength
+
+  * str
+
+  * maxCarry()
+
+$Luck
+
+  * lck
+
+  * isLucky()
+
+$Intelligence
+
+  * int
+
+  * isSmart()
+  * isDumb()
+
+$State
+
+  * states
+  * state
+
+  * prevState()
+  * nextState()
+
+$Equipments
+
+  * equipments
+
+  * canEquip(item)
+  * equip(item)
+  * canUnequip(item)
+  * unequip(item)
+
+$Requirements
+
+  * requirements
+
+  * pass(source)  // all
+
+$Inventory
+
+  * items
+
+  * hasItem(item)
+  * hasItemLike(class)
+  * canAddItem(item)
+  * addItem(item)
+  * canRemoveItem(item)
+  * removeItem(item)
+  * clearItems()
+  * canPickup(item, qty, source)
+  * pickup(item, qty, source)
+  * canDrop(item, qty, target)
+  * drop(item, qty, target)
+  * canGive(item,qty, target)
+  * give(item, qty, target)
+
+$Mods
+
+  * mods
+
+  * hasMods()
+  * isModApplied(mod)
+  * canApplyMod(mod)
+  * applyMod(mod)
+  * removeMod(mod)
+  * applyMods()
+  * clearMods()
+
+$Npcs
+
+  * npcs
+
+  * isPresent(npc)
+
+$Timer
+
+  * interval
+  * duration
+  * count
+
+  * tick(elapsed)
+
+$Locations
+
+  * locations
+
+  * hasLocations()
+  * hasLocation(location)
+  * hasLocationLike(class)
+  * visits(npc) // list of visited locations
+  * removeLocation(location)
+  * clearLocations()
+
+$Missions
+
+  * missions
+
+  * hasMissions()
+  * startMission(mission)
+  * finishMission(mission)
+  * failMission(mission)
+  * isStarted(mission)
+  * isFinished(mission)
+  * isFailed(mission)
+  * missionsStarted()
+  * missionsFinished()
+  * missionsFailed()
+  * removeMission(mission)
+  * clearMissions()
+
+$Logs
+
+  * logs
+
+  * log(action, source, qty, note)
+  * findLog(action = null, source = null)
+  * findAllLogs(action = null, source = null)
+  * removeLog(log)
+  * clearLogs()
+
+
+Galaxy : Location ($Day)
+
+  * news
+
+News ($Day, $Source, $Target)
+
+  * display()
+
+EconomicNews : News
+
+PoliticalNews : News
+
+CriminalNews : News
+
+Location ($Name, $Desc, $Icon, $Parent, $Npcs, $Requirements, $Locations)
+
+  * isEmpty()
+  * visits(npc) // from npc logs
+  * visited(npc)
+  * canEnter(npc)
+  * enter(npc)
+  * canExit(npc)
+  * exit(npc)
+
+Planet : Location
+
+  * climate
+
+Climate ($Mods, $Requirements)
+
+Building : Location
+
+Bar : Building
+
+Hotel : Building
+
+Bank : Building
+
+Shop : Building
+
+SpacePort : Building
+
+Mod ($Timer, $Value)
+
+  * prop // property name to alter
+
+  * applyTo(target)
+  * removeFrom(target)
+  * isAppliedTo(target)
+
+Npc ($Name, $Desc, $Icon, $Parent, $Hp, $Strength, $Attack, $Defense, $Luck, $Intelligence, $Missions, $Equipments, $Inventory, $Logs)
+
+  * canMoveTo(location)
+  * moveTo(location)
+  * canEnter(location)
+  * enter(location)
+  * canExit(location)
+  * exit(location)
+  * canPickup(item, qty, source)
+  * pickup(item, qty, source)
+  * canDrop(item, qty, target)
+  * drop(item, qty, target)
+  * canGive(item,qty, target)
+  * give(item, qty, target)
+  * canSteal(item, qty, source)
+  * steal(item, qty, source)
+
+Item ($ItemStats, $Qty, $Value)
+
+  * drop(target)
+  * pickup(source)
+  * give(target)
+  * steal(npc)
+
+  * owner() // only if parent is Npc
+
+Equipment : Item
+
+  * canEquip(target)
+  * equip(target)
+  * canUnequip(target)
+  * unequip(target)
+
+Mission ($MissionStats, $Requirements, $Source, $Target, $Qty)
+
+  * canStart()
+  * start()
+  * canFinish()
+  * finish()
+  * canFail()
+  * fail()
+  * isStarted()
+  * isFinished()
+  * isFailed()
+
+DeliverMission : Mission
+
+RetrieveMission : Mission
+
+StealMission : Mission
+
+DestroyMission : Mission
+
+Requirement
+
+  * item
+  * min
+  * max
+
+  * pass(source)
+
+Player : Npc
+
+  * ship
+
+Log ($Day, $Source, $qty)
+
+  * action (destroy | sell | buy | begin | end | failed | steal | get | give)
+  * note
+
+  * isAction(name)
+
+Ship ($Strength, $Hp, $Attack, $Defense)

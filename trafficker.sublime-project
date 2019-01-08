@@ -1,0 +1,14 @@
+{
+	"folders":
+	[
+		{
+			"file_exclude_patterns":
+			[
+				".gitignore",
+				"trafficker.sublime-project",
+				"trafficker.sublime-workspace"
+			],
+			"path": "."
+		}
+	]
+}
